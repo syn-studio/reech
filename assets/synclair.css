@@ -1,0 +1,65 @@
+.main-hero {
+  background: -webkit-gradient(linear, left top, left bottom, from(#FEEBDC), color-stop(#FEEBDC), to(white));
+  background: linear-gradient(to bottom, #FEEBDC, #FEEBDC, white);
+  min-height: 100vh;
+  padding: 50px 0;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); }
+  .main-hero--content {
+    padding-top: 20vh; }
+    .main-hero--content--header {
+      text-align: center; }
+      .main-hero--content--header > h1 {
+        margin: 0 auto;
+        width: 650px;
+        font-size: 50px;
+        margin-bottom: 10px;
+        line-height: 125%; }
+      .main-hero--content--header > p {
+        margin: 0 auto;
+        width: 490px;
+        font-size: 24px;
+        line-height: 30px;
+        font-weight: 500;
+        margin-bottom: 30px; }
+      .main-hero--content--header--cta-container button {
+        background: white;
+        border: 4px solid black;
+        font-size: 24px;
+        font-weight: 600;
+        width: 300px;
+        height: 64px;
+        margin-bottom: 10px; }
+      .main-hero--content--header--cta-container p {
+        font-weight: 500;
+        font-size: 18px; }
+    .main-hero--content--image-placeholder {
+      height: 600px;
+      width: 270px;
+      background: gray;
+      margin: 20px auto; }
+    .main-hero--content > h2 {
+      font-size: 30px;
+      text-align: center;
+      position: relative;
+      margin-bottom: 55px; }
+      .main-hero--content > h2:after {
+        content: '';
+        width: 1.5px;
+        height: 40px;
+        background: #c7c7c7;
+        position: absolute;
+        left: 50%;
+        top: 42px; }
+    .main-hero--content > button {
+      text-align: center;
+      margin: 0 auto;
+      background: white;
+      border: 2px solid black;
+      font-weight: 500;
+      font-size: 16px;
+      padding: 6px 12px;
+      position: relative;
+      left: 50%;
+      -webkit-transform: translate(-50%);
+      transform: translate(-50%); }

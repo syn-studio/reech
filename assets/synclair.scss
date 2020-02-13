@@ -1,7 +1,86 @@
-body {
-    color: red;
+.main-hero {
+    background: linear-gradient(to bottom, #FEEBDC, #FEEBDC, white);
+    min-height: 100vh;
+    padding: 50px 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 
-    > * {
-        color: blue !important;
+    &--content {
+        padding-top: 20vh;
+
+        &--header {
+            text-align: center;
+
+            > h1 {
+                margin: 0 auto;
+                width: 650px;
+                font-size: 50px;
+                margin-bottom: 10px;
+                line-height: 125%;
+            }
+
+            > p {
+                margin: 0 auto;
+                width: 490px;
+                font-size: 24px;
+                line-height: 30px;
+                font-weight: 500;
+                margin-bottom: 30px;
+            }
+
+            &--cta-container {
+
+                button {
+                    background: white;
+                    border: 4px solid black;
+                    font-size: 24px;
+                    font-weight: 600;
+                    width: 300px;
+                    height: 64px;
+                    margin-bottom: 10px;
+                }
+
+                p {
+                    font-weight: 500;
+                    font-size: 18px;
+                }
+            }
+        }
+
+        &--image-placeholder {
+            height: 600px;
+            width: 270px;
+            background: gray;
+            margin: 20px auto;
+        }
+
+        > h2 {
+            font-size: 30px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 55px;
+
+            &:after {
+                content: '';
+                width: 1.5px;
+                height: 40px;
+                background: #c7c7c7;
+                position: absolute;
+                left: 50%;
+                top: 42px;
+            }
+        }
+
+        > button {
+            text-align: center;
+            margin: 0 auto;
+            background: white;
+            border: 2px solid black;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 6px 12px;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+        }
     }
 }
