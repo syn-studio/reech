@@ -1,0 +1,262 @@
+{% if section.settings.review_homepageenable %}
+<center><div class="module-header">
+
+  <h3 class="home-testimonials-title">
+    {{ section.settings.review_title }}
+  </h3>
+  </div></center>
+<section class="regular slider" id="reviewslider">
+
+  {% for block in section.blocks %}
+  {% assign img_url = block.settings.review_slide_image | img_url: '1x1' | replace: '_1x1.', '_50x.' %}
+
+  <div class="home-testimonials-slides-list-item-container">
+    <center>
+      <p class="testimoialtext">{{ block.settings.review_slide_title }}</p>
+      <div class="home-testimonials-slides-list-item-footer-container clearfix">
+
+        <div class="home-testimonials-slides-list-item-footer-image">
+          <img class="home-testimonial-avatar" alt="" src="{{ img_url }}">
+        </div>
+
+
+
+        <div class="home-testimonials-slides-list-item-footer-text">
+
+          <div class="home-testimonial-source">
+            {{ block.settings.review_author }}
+          </div>
+
+
+          <p class="home-testimonial-city">
+            {{ block.settings.review_city }}
+          </p>
+
+        </div>
+
+      </div>
+    </center>
+  </div>
+  {% endfor %}
+
+</section>
+{% endif %}
+<script>
+  $(".regular").slick({
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+            centerMode: true,
+    responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+                    centerMode: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+       centerMode: true
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true,
+        centerMode: true
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+
+      });
+</script>
+{% if settings.type_base_family_review_heading contains 'Google' %}
+  {% assign type_base_parts_review_heading = settings.type_base_family_review_heading | split: '_' %}
+  {% assign type_base_name_review_heading = type_base_parts_review_heading[1] %}
+  {% capture base_family_review_heading %}"{{ type_base_name_review_heading | split: ':' | first | replace: '+', ' ' }}"{% if type_base_parts_review_heading.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% else %}
+  {% assign base_family_review_heading = settings.type_base_family_review_heading %}
+{% endif %}
+
+{% if settings.type_base_family_review_text contains 'Google' %}
+  {% assign type_base_parts_review_text = settings.type_base_family_review_text | split: '_' %}
+  {% assign type_base_name_review_text = type_base_parts_review_text[1] %}
+  {% capture base_family_review_text %}"{{ type_base_name_review_text | split: ':' | first | replace: '+', ' ' }}"{% if type_base_parts_review_text.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% else %}
+  {% assign base_family_review_text = settings.type_base_family_review_text %}
+{% endif %}
+<style>
+ .home-testimonial-source {
+   color: {{ section.settings.review_author_color}} ;
+ }
+  #shopify-section-{{ section.id }} h3{font-family:"LeviBrush" !important;color: {{ section.settings.review_heading_color}} !important;}
+  #shopify-section-{{ section.id }} p {font-family:{{ base_family_review_text }}  !important; color: {{ section.settings.review_text_color}} !important;}
+   .slick-slide {
+      margin: 0px 20px;
+    }
+
+   
+    .slick-prev:before,
+    .slick-next:before {
+      color: {{ section.settings.review_arrow_color }};
+    }
+
+
+    .slick-slide {
+      transition: all ease-in-out .3s;
+      opacity: .2;
+    }
+    
+    
+
+    .slick-current {
+      opacity: 1;
+    }
+  .slick-dots li.slick-active button:before
+{
+  color: {{ section.settings.review_dot_color }};
+}
+  .slick-dots li button:before{
+    color:{{ section.settings.review_dotsel_color }}
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Homepage Review slider",
+  "class": "index-section index-section--featured-sider",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "review_homepageenable",
+      "label": "Homepage Review Enable?",
+      "default": false
+    },
+{
+      "type": "color",
+      "id": "review_heading_color",
+      "label": "Review Heading color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "review_text_color",
+      "label": "Review Text color",
+      "default": "#000"
+    },
+ {
+      "type": "color",
+      "id": "review_author_color",
+      "label": "Review Author color",
+      "default": "#4a4a4a"
+    },
+ {
+      "type": "color",
+      "id": "review_arrow_color",
+      "label": "Review Arrow color",
+      "default": "#ea2931"
+    },
+ {
+      "type": "color",
+      "id": "review_dot_color",
+      "label": "Review Dot Selected color",
+      "default": "#fd8311"
+    },
+ {
+      "type": "color",
+      "id": "review_dotsel_color",
+      "label": "Review Dot color",
+      "default": "#000"
+    },
+    {
+      "type": "header",
+      "content": "Cover settings"
+    },
+ 
+    {
+      "type": "text",
+      "id": "review_title",
+      "label": "Heading",
+      "default": "Showcase some product information"
+    }
+   
+ 
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Review Slide",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "text",
+          "id": "review_slide_title",
+          "label": "Heading",
+          "default": "Featured variant"
+        },
+        {
+          "type": "header",
+          "content": "Image"
+        },
+      
+        {
+          "type": "image_picker",
+          "id": "review_slide_image",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Text"
+        },
+       
+        {
+          "type": "text",
+          "id": "review_author",
+          "label": "Review Author",
+          "default": "Author"
+        },
+       
+        {
+          "type": "text",
+          "id": "review_city",
+          "label": "Review City",
+          "default": "Address"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Review slider",
+      "category": "Advanced layout",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,421 @@
+{% if section.settings.show_overlay %}
+  <style>
+    #Slideshow-{{ section.id }} .slideshow__overlay::before {
+      background-color: {{ section.settings.overlay_color }};
+      opacity: {{ section.settings.overlay_opacity }};
+    }
+
+    #Slideshow-{{ section.id }} .slideshow__heading,
+    #Slideshow-{{ section.id }} .slideshow__button-label {
+      color: {{ section.settings.overlay_text }};
+    }
+  </style>
+{% endif %}
+
+<div data-section-id="{{ section.id }}" data-section-type="slideshow-section">
+  <div id="Slideshow-{{ section.id }}" class="slideshow">
+    {% if section.blocks.size > 0 %}
+      <div class="slideshow__slides">
+
+        {% for block in section.blocks %}
+          <div class="slideshow__slide slideshow__slide--{{ block.id }}{% if forloop.first %} slideshow__slide--active{% endif %}{% if section.settings.show_overlay %} slideshow__overlay{% endif %}" {% unless forloop.first %}aria-hidden="true"{% endunless %} {{ block.shopify_attributes }}>
+
+            {% if block.settings.image == blank %}
+              <div class="slideshow__image slideshow__image--{{ block.id }}">
+                <div class="placeholder-background">
+                  {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                  {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              </div>
+            {% else %}
+              {% assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+
+              <style>
+                .slideshow__image--{{ block.id }} {
+                  object-position: {{ block.settings.alignment }};
+                  font-family: "object-fit: cover; object-position: {{ block.settings.alignment }};";
+                }
+              </style>
+
+              <img class="slideshow__image new-slide slideshow__image--{{ block.id }} lazyload"
+                  src="{{ block.settings.image | img_url: '300x' }}"
+                  data-src="{{ img_url }}"
+                  data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+                  data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                  data-sizes="auto"
+                  data-parent-fit="cover"
+                  alt="{{ block.settings.image.alt | escape }}">
+            {% endif %}
+
+            {% if block.type == 'video' and block.settings.video_url != blank %}
+              <div class="slideshow__video slideshow__video--{{ block.id }}"
+                data-video-type="{{ block.settings.video_url.type }}"
+                data-video-id="{{ block.settings.video_url.id }}"></div>
+            {% endif %}
+
+            <div class="slideshow__text-container page-width">
+              <div class="slideshow__text-content" data-animate>
+                {% if block.settings.title != blank %}
+                  <h2 class="slideshow__heading h1">
+                    <span id="rw-words"></span>
+                  </h2>
+                  {% if section.blocks.size == 1 and block.settings.cta_link != blank %}
+                    <a href="{{ block.settings.cta_link }}" class="slideshow__heading-cta btn">
+                      {{ section.settings.cta | escape }}
+                    </a>
+                  {% endif %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="slideshow__image slideshow__image--{{ block.id }}{% if section.settings.show_overlay %} slideshow__overlay{% endif %}">
+        <div class="placeholder-background">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 1 %}
+      <button class="slideshow__button--next critical-hide">
+        <span class="visually-hidden">{{ 'sections.slider.next_slide' | t}}</span>
+      </button>
+
+      <div class="slideshow__buttons critical-hide" data-count="{{ section.blocks.size }}" autoPlayTime="{{ section.settings.autoplay }}">
+        {% for block in section.blocks %}
+          <div class="slideshow__button slideshow__button--{{ section.blocks.size }}{% if block.settings.cta_link != blank %} slideshow__button--link{% endif %}">
+            <button class="slideshow__button-label text-title btn--clear" data-loop="{{forloop.index}}">
+              <span class="visually-hidden">{{ 'sections.slider.slide' | t: number: forloop.index }}</span>
+              {{ block.settings.button }}
+            </button>
+
+            {% if block.settings.cta_link != blank %}
+              <a href="{{ block.settings.cta_link }}" class="slideshow__button-cta slideshow__button-cta--mobile medium-up--hide btn" tabindex="-1">
+                <span class="visually-hidden">{{ section.settings.cta | escape }}</span>
+                {% include 'icon-plus' %}
+              </a>
+            {% else %}
+              <div class="slideshow__button-cta slideshow__button-cta--mobile medium-up--hide btn" tabindex="-1">
+                <span class="visually-hidden">{{ section.settings.cta | escape }}</span>
+                {% include 'icon-plus' %}
+              </div>
+            {% endif %}
+
+            {% if block.settings.cta_link != blank %}
+              <a href="{{ block.settings.cta_link }}" class="slideshow__button-cta slideshow__button-cta--desktop small--hide btn" tabindex="-1">
+                {{ section.settings.cta | escape }}
+              </a>
+            {% else %}
+              <div class="slideshow__button-cta slideshow__button-cta--desktop small--hide btn" tabindex="-1">
+                {{ section.settings.cta | escape }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <button class="slideshow__button--previous critical-hide">
+        <span class="visually-hidden">{{ 'sections.slider.previous_slide' | t}}</span>
+      </button>
+    {% endif %}
+  </div>
+
+  {% if section.blocks.size > 1 %}
+    <div class="slideshow__nav">
+      {% for block in section.blocks %}
+        <button class="slideshow__nav-dot{% if forloop.first %} slideshow__nav-dot--active{% endif %} critical-clear">
+          <span class="visually-hidden">{{ 'sections.slider.slide' | t: number: forloop.index }}</span>
+        </button>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "class": "index-section index-section--slideshow",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "Button labels",
+      "default": "Featured Link"
+    },
+    {
+      "type": "text",
+      "id": "autoplay",
+      "label": "Input Autoplay Time in sec As (1000=1sec)",
+      "default": "5000"
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "overlay_text",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "overlay_opacity",
+      "label": "Opacity",
+      "default": "0.3",
+      "options": [
+        {
+          "label": "100%",
+          "value": "1"
+        },
+        {
+          "label": "95%",
+          "value": "0.95"
+        },
+        {
+          "label": "90%",
+          "value": "0.9"
+        },
+        {
+          "label": "85%",
+          "value": "0.85"
+        },
+        {
+          "label": "80%",
+          "value": "0.8"
+        },
+        {
+          "label": "75%",
+          "value": "0.75"
+        },
+        {
+          "label": "70%",
+          "value": "0.7"
+        },
+        {
+          "label": "65%",
+          "value": "0.65"
+        },
+        {
+          "label": "60%",
+          "value": "0.6"
+        },
+        {
+          "label": "55%",
+          "value": "0.55"
+        },
+        {
+          "label": "50%",
+          "value": "0.5"
+        },
+        {
+          "label": "45%",
+          "value": "0.45"
+        },
+        {
+          "label": "40%",
+          "value": "0.4"
+        },
+        {
+          "label": "35%",
+          "value": "0.35"
+        },
+        {
+          "label": "30%",
+          "value": "0.3"
+        },
+        {
+          "label": "25%",
+          "value": "0.25"
+        },
+        {
+          "label": "20%",
+          "value": "0.2"
+        },
+        {
+          "label": "0%",
+          "value": "0"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Image alignment",
+          "default": "center center",
+          "options": [
+            {
+              "label": "Top left",
+              "value": "top left"
+            },
+            {
+              "label": "Top center",
+              "value": "top center"
+            },
+            {
+              "label": "Top right",
+              "value": "top right"
+            },
+            {
+              "label": "Middle left",
+              "value": "center left"
+            },
+            {
+              "label": "Middle center",
+              "value": "center center"
+            },
+            {
+              "label": "Middle right",
+              "value": "center right"
+            },
+            {
+              "label": "Bottom left",
+              "value": "bottom left"
+            },
+            {
+              "label": "Bottom center",
+              "value": "bottom center"
+            },
+            {
+              "label": "Bottom right",
+              "value": "bottom right"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Tell your story"
+        },
+        {
+          "type": "text",
+          "id": "button",
+          "label": "Slide title",
+          "default": "Slide title",
+          "info": "Required if you add more than one slide"
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "Button link"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video slide",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "info": "Best results if the video's aspect ratio is 16:9",
+          "label": "Video link",
+          "accept": ["youtube", "vimeo"],
+          "default": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Fallback when autoplaying video is not supported on mobile devices"
+        },
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Slideshow video"
+        },
+        {
+          "type": "text",
+          "id": "button",
+          "label": "Slide title",
+          "default": "Slide title",
+          "info": "Only shows if you set more than one slide in the slideshow"
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+
+
+<script>
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.TypeIt=t()}(this,function(){"use strict";function e(e){var t=e.getBoundingClientRect();return!(t.right>window.innerWidth||t.bottom>window.innerHeight)&&!(t.top<0||t.left<0)}function t(e,t){return Math.abs(Math.random()*(e+t-(e-t))+(e-t))}function i(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"",i=document.createElement("style");i.id=t,i.appendChild(document.createTextNode(e)),document.head.appendChild(i)}function n(e,t){return 0===e.indexOf(t)}function s(e){return Array.isArray(e)?e.slice(0):e.split("<br>")}window.TypeItDefaults={strings:[],speed:100,deleteSpeed:null,lifeLike:!0,cursor:!0,cursorChar:"|",cursorSpeed:1e3,breakLines:!0,startDelay:250,startDelete:!1,nextStringDelay:750,loop:!1,loopDelay:!1,html:!0,autoStart:!0,callback:!1,beforeString:!1,afterString:!1,beforeStep:!1,afterStep:!1,afterComplete:!1};var o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},r=function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")},a=function(){function e(e,t){for(var i=0;i<t.length;i++){var n=t[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,i,n){return i&&e(t.prototype,i),n&&e(t,n),t}}(),u=function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t},h=function(){function o(e,t,i,n,s){r(this,o),this.id=t,this.typeit=s,this.autoInit=n,this.element=e,this.timeouts=[],this.hasStarted=!1,this.isFrozen=!1,this.isComplete=!1,this.hasBeenDestroyed=!1,this.queue=[],this.isInTag=!1,this.stringsToDelete="",this.inlineStyles={base:"display:inline;position:relative;font:inherit;color:inherit;line-height:inherit;"},this.setOptions(i,window.TypeItDefaults,!1),this.prepareTargetElement(),this.prepareDelay("nextStringDelay"),this.prepareDelay("loopDelay"),this.prepareDOM(),this.prepareStrings(),this.options.startDelete&&this.stringsToDelete&&(this.insert(this.stringsToDelete),this.queue.push([this.delete]),this.insertSplitPause(1)),this.generateQueue(),this.options.strings.length&&this.options.strings[0]&&this.autoInit&&this.init()}return a(o,[{key:"prepareStrings",value:function(){this.options.strings=s(this.options.strings).map(function(e){return e.replace(/<\!--.*?-->/g,"")})}},{key:"prepareDOM",value:function(){this.element.innerHTML='\n      <span style="'+this.inlineStyles.base+'" class="ti-wrapper">\n        <span style="'+this.inlineStyles.base+'" class="ti-container"></span>\n      </span>\n      ',this.element.setAttribute("data-typeitid",this.id),this.elementContainer=this.element.querySelector(".ti-container"),this.elementWrapper=this.element.querySelector(".ti-wrapper"),i("\n        ."+this.elementContainer.className+":before {\n          content: '.';\n          display: inline-block;\n          width: 0;\n          visibility: hidden;\n        }\n      ")}},{key:"reset",value:function(){return new o(this.element,this.id,this.options,this.autoInit,this.typeit)}},{key:"contents",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;return null===e?this.options.html?this.elementContainer.innerHTML:this.elementContainer.innerText:(this.elementContainer[this.options.html?"innerHTML":"innerText"]=e,e)}},{key:"prepareDelay",value:function(e){var t=this.options[e];if(t){var i=Array.isArray(t),n=i?null:t/2;this.options[e]={before:i?t[0]:n,after:i?t[1]:n,total:i?t[0]+t[1]:t}}}},{key:"generateQueue",value:function(){var e=this,t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;t=null===t?[this.pause,this.options.startDelay]:t,this.queue.push(t),this.options.strings.forEach(function(t,i){if(e.queueString(t),i+1!==e.options.strings.length){if(e.options.breakLines)return e.queue.push([e.break]),void e.insertSplitPause(e.queue.length);e.queueDeletions(t),e.insertSplitPause(e.queue.length,t.length)}})}},{key:"queueDeletions",value:function(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,t="string"==typeof e?e.length:e,i=0;i<t;i++)this.queue.push([this.delete,1])}},{key:"queueString",value:function(e){var t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];if(e){if(e=s(e),document.implementation.createHTMLDocument("").body.innerHTML=e,t&&(e=this.rake(e)[0]),this.options.html&&n(e[0],"<")&&!n(e[0],"</")){var i=e[0].match(/\<(.*?)\>/),o=document.implementation.createHTMLDocument("");o.body.innerHTML="<"+i[1]+"></"+i[1]+">",this.queue.push([this.type,o.body.children[0]])}else this.queue.push([this.type,e[0]]);e.splice(0,1),t&&this.queue[this.queue.length-1].push("first-of-string"),e.length?this.queueString(e,!1):this.queue[this.queue.length-1].push("last-of-string")}}},{key:"insertSplitPause",value:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:1;this.queue.splice(e,0,[this.pause,this.options.nextStringDelay.before]),this.queue.splice(e-t,0,[this.pause,this.options.nextStringDelay.after])}},{key:"init",value:function(){if(!this.hasStarted){if(this.cursor(),this.options.autoStart)return this.hasStarted=!0,void this.next();if(e(this.element))return this.hasStarted=!0,void this.next();var t=this;window.addEventListener("scroll",function i(n){e(t.element)&&!t.hasStarted&&(t.hasStarted=!0,t.next(),n.currentTarget.removeEventListener(n.type,i))})}}},{key:"cursor",value:function(){var e="visibility: hidden;";this.options.cursor&&(i("\n        @keyframes blink-"+this.id+" {\n          0% {opacity: 0}\n          49% {opacity: 0}\n          50% {opacity: 1}\n        }\n\n        [data-typeitid='"+this.id+"'] .ti-cursor {\n          animation: blink-"+this.id+" "+this.options.cursorSpeed/1e3+"s infinite;\n        }\n      ",this.id),e=""),this.elementWrapper.insertAdjacentHTML("beforeend",'<span style="'+this.inlineStyles.base+e+'left: -.25ch;" class="ti-cursor">'+this.options.cursorChar+"</span>")}},{key:"insert",value:function(e){arguments.length>1&&void 0!==arguments[1]&&arguments[1]?this.elementContainer.lastChild.insertAdjacentHTML("beforeend",e):this.elementContainer.insertAdjacentHTML("beforeend",e),this.contents(this.contents().split("").join(""))}},{key:"prepareTargetElement",value:function(){var e=this;[].slice.call(this.element.childNodes).forEach(function(t){void 0!==t.classList&&t.classList.contains("ti-container")&&(e.element.innerHTML="")}),!this.options.startDelete&&this.element.innerHTML.length>0?this.options.strings=this.element.innerHTML.trim():this.stringsToDelete=this.element.innerHTML}},{key:"break",value:function(){this.insert("<br>"),this.next()}},{key:"pause",value:function(){var e=this,t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];setTimeout(function(){e.next()},t||this.options.nextStringDelay.total)}},{key:"rake",value:function(e){var t=this;return e.map(function(e){return e=e.split(""),t.options.html?function(e){for(var t=[],i=void 0,n=!1,s=0;s<e.length;s++)"<"!==e[s]&&"&"!==e[s]||(t[0]=s,n="&"===e[s]),(">"===e[s]||";"===e[s]&&n)&&(t[1]=s,s=0,i=e.slice(t[0],t[1]+1).join(""),e.splice(t[0],t[1]-t[0]+1,i),n=!1);return e}(e):e})}},{key:"type",value:function(e){var t=this;this.setPace(),this.timeouts[0]=setTimeout(function(){return"string"!=typeof e?(e.innerHTML="",t.elementContainer.appendChild(e),t.isInTag=!0,void t.next()):n(e,"</")?(t.isInTag=!1,void t.next()):(t.insert(e,t.isInTag),void t.next())},this.typePace)}},{key:"setOptions",value:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,i=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],n={};for(var s in null===t&&(t=this.options),t)n[s]=t[s];for(var o in e)n[o]=e[o];this.options=n,i&&this.next()}},{key:"setPace",value:function(){var e=this.options.speed,i=null!==this.options.deleteSpeed?this.options.deleteSpeed:this.options.speed/3,n=e/2,s=i/2;this.typePace=this.options.lifeLike?t(e,n):e,this.deletePace=this.options.lifeLike?t(i,s):i}},{key:"delete",value:function(){var e=this,t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;this.timeouts[1]=setTimeout(function(){e.setPace();for(var i=e.contents().split(""),n=i.length-1;n>-1;n--){if(">"!==i[n]&&";"!==i[n]||!e.options.html){i.pop();break}for(var s=n;s>-1;s--){if("<br>"===i.slice(s-3,s+1).join("")){i.splice(s-3,4);break}if("&"===i[s]){i.splice(s,n-s+1);break}if("<"===i[s]&&">"!==i[s-1]){if(";"===i[s-1])for(var o=s-1;o>-1;o--)if("&"===i[o]){i.splice(o,s-o);break}i.splice(s-1,1);break}}break}if(e.options.html&&e.contents().indexOf("></")>-1)for(var r=e.contents().indexOf("></")-2;r>=0;r--)if("<"===i[r]){i.splice(r,i.length-r);break}e.contents(i.join("").replace(/<[^\/>][^>]*><\/[^>]+>/,"")),null===t&&e.queue.unshift([e.delete,i.length]),t>1&&e.queue.unshift([e.delete,t-1]),e.next()},this.deletePace)}},{key:"empty",value:function(){this.contents(""),this.next()}},{key:"next",value:function(){var e=this;if(!this.isFrozen){if(this.queue.length>0)return this.step=this.queue.shift(),"first-of-string"===this.step[2]&&this.options.beforeString&&this.options.beforeString(this.step,this.queue,this.typeit),this.options.beforeStep&&this.options.beforeStep(this.step,this.queue,this.typeit),this.step[0].call(this,this.step[1],this.step[2]),"last-of-string"===this.step[2]&&this.options.afterString&&this.options.afterString(this.step,this.queue,this.typeit),void(this.options.afterStep&&this.options.afterStep(this.step,this.queue,this.typeit));if(this.options.callback&&this.options.callback(),this.options.afterComplete&&this.options.afterComplete(this.typeit),this.options.loop){var t=this.options.loopDelay?this.options.loopDelay:this.options.nextStringDelay;return this.queueDeletions(this.contents()),this.generateQueue([this.pause,t.before]),void setTimeout(function(){e.next()},t.after)}this.isComplete=!0}}}]),o}(),l=function(){function e(t,i){var n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];r(this,e),this.id=Math.random().toString(36).substring(2,15),this.instances=[],this.elements=[],this.args=i,this.autoInit=n,"object"===(void 0===t?"undefined":o(t))&&(void 0===t.length?this.elements.push(t):this.elements=t),"string"==typeof t&&(this.elements=document.querySelectorAll(t)),this.generateInstances()}return a(e,[{key:"generateInstances",value:function(){var e=this;[].slice.call(this.elements).forEach(function(t){e.instances.push(new h(t,e.id,e.args,e.autoInit,e))})}},{key:"queueUp",value:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null;this.init(!0),this.instances.forEach(function(i){i.queue.push([i[e],t]),!0===i.isComplete&&i.next(),i.isComplete=!1})}}]),e}();return function(e){function t(e,i){var n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];return r(this,t),u(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e,i,n))}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,l),a(t,[{key:"type",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";return this.init(!0),this.instances.forEach(function(t){t.queueString(e),!0===t.isComplete&&t.next(),t.isComplete=!1}),this}},{key:"delete",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;return this.queueUp("delete",e),this}},{key:"pause",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;return this.queueUp("pause",e),this}},{key:"empty",value:function(){return this.queueUp("empty"),this}},{key:"break",value:function(){return this.queueUp("break"),this}},{key:"options",value:function(e){return this.queueUp("setOptions",e),this}},{key:"freeze",value:function(){this.instances.forEach(function(e){e.isFrozen=!0})}},{key:"unfreeze",value:function(){this.instances.forEach(function(e){e.isFrozen&&(e.isFrozen=!1,e.next())})}},{key:"destroy",value:function(){var e=!(arguments.length>0&&void 0!==arguments[0])||arguments[0];this.instances.forEach(function(t){t.timeouts.forEach(function(e){clearTimeout(e)}),t.timeouts=[],e&&t.options.cursor&&t.elementWrapper.removeChild(t.elementWrapper.querySelector(".ti-cursor")),t.hasBeenDestroyed=!0})}},{key:"reset",value:function(){this.instances=this.instances.map(function(e){return e.reset()})}},{key:"init",value:function(){var e=arguments.length>0&&void 0!==arguments[0]&&arguments[0];this.instances.forEach(function(t){e?t.autoInit&&t.init():t.init()})}},{key:"isComplete",get:function(){return!!this.instances.length&&this.instances[0].isComplete}},{key:"hasBeenDestroyed",get:function(){return!!this.instances.length&&this.instances[0].hasBeenDestroyed}},{key:"hasStarted",get:function(){return!!this.instances.length&&this.instances[0].hasStarted}},{key:"isFrozen",get:function(){return!!this.instances.length&&this.instances[0].isFrozen}}]),t}()});
+</script>
+
+
+ 
+<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+<script>
+
+        new TypeIt('#rw-words', {
+            speed: 0,
+            autoStart: true,
+            breakLines: false,
+            cursorChar: "<span style='font-weight:300;margin-left:-13px;'>|</span>"
+        })
+        .options({
+            speed: 200
+        })
+        
+        .type("Ridiculous grip.")
+        .pause(800)
+        .delete(16)
+        .type("Never ever slip...")
+        .pause(600)
+        .delete(18)
+        .type("Seriously.")
+        .pause(3000)
+        .delete(10)
+        .type("Biodegradable.")
+        .pause(800)
+        .delete(14)
+        .type("Give your practice what it needs.")
+    
+
+  
+</script>
+

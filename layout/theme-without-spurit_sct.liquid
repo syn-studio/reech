@@ -1,0 +1,292 @@
+{% if
+  template.name == 'blog'
+  or template.name == 'collection'
+  or template.name == 'list-collections'
+  or template.name == 'search'
+%}
+  {%- assign hide_footer = true -%}
+{% endif %}
+<!doctype html>
+<!--[if IE 9]> <html class="ie9 supports-no-js{% if hide_footer %} site-footer--hidden{% endif %}" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="loader cssupports-no-js {% if hide_footer %} site-footer--hidden{% endif %}" lang="{{ shop.locale }}"> <!--<![endif]-->
+<head>
+  
+  <meta name="google-site-verification" content="XDjzwJOPGyqFfkrh5NxKFo07_hpOneN2hWMqraYIBEY" />
+  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  {% comment %}<link href="https://db.onlinewebfonts.com/c/90f4a8ee881004da00dfe4bcdf34a5dc?family=LeviBrush" rel="stylesheet" type="text/css"/>{% endcomment %}
+  {% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {% endif %}
+
+  <title>
+    {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {% include 'social-meta-tags' %}
+
+  {{ content_for_header }}
+
+  {% include 'critical-css' %}
+  {% include 'google-fonts' %}
+  {% include 'load-css' %}
+
+  <!-- Global site tag (gtag.js) - Google Ads: 795138109 --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-795138109"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-795138109'); </script> 
+  
+  <script>
+    var theme = {
+      stylesheet: "{{ 'theme.scss.css' | asset_url }}",
+      strings: {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        addItemSuccess: {{ 'products.product.item_added_to_cart' | t | json }},
+        cartError: {{ 'cart.general.cart_error' | t | json }},
+        cartQuantityError: {{ 'cart.general.cart_quantity_error_html' | t: quantity: "[quantity]", title: "[title]" | json }},
+        newsletter: {
+          blankError: {{ 'general.newsletter_form.blank_error' | t | json }},
+          invalidError: {{ 'general.newsletter_form.invalid_error' | t | json }}
+        },
+        map: {
+          zeroResults: {{ 'sections.map.address_no_results' | t | json }},
+          overQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
+          authError: {{ 'sections.map.auth_error_html' | t | json }},
+          addressError: {{ 'sections.map.address_error' | t | json }}
+        }
+      },
+      isOnline: true,
+      moneyFormat: {{ shop.money_format | json }},
+      mediaQuerySmall: 750,
+      mediaQueryMedium: 990
+    };
+
+    {% if template.directory == 'customers' %}
+      theme.countryOptionTags = {{ country_option_tags | json}};
+    {% endif %}
+
+    document.documentElement.className = document.documentElement.className.replace('supports-no-js', '');
+  </script>
+        {{ 'swiper.min.css' | asset_url | stylesheet_tag }}
+{{ 'swiper.min.js' | asset_url | script_tag }}
+  
+  {{ 'slick.css' | asset_url | stylesheet_tag }}
+  {{ 'slick-theme.css' | asset_url | stylesheet_tag }}
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+{% if template contains "page.about-section" %}
+<script src="//google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  {{ 'jquery.touchSwipe.min.js'| asset_url | script_tag }}
+{%else%}
+
+    
+{%endif%}
+
+<script src="{{ 'polyfills.js' | asset_url }}"></script>
+<script src="{{ 'lazysizes.min.js' | asset_url }}"></script>
+<script src="{{ 'theme.min.js' | asset_url }}"></script>
+<script src="{{ 'custom.js' | asset_url }}"></script>
+{{ 'slick.min.js' | asset_url | script_tag }}
+<!-- BeginShopPopAddon --><script>  Shopify.shopPopSettings = {"proof_enabled":false,"proof_show_add_to_cart":true,"proof_mobile_enabled":true,"proof_mobile_position":"Bottom","proof_desktop_position":"Bottom Left","proof_show_on_product_page":true,"proof_hide_notification_after":30,"proof_display_time":6,"proof_interval_time":5,"proof_order_random":false,"proof_fetch_count":30,"proof_cycle":true,"proof_anonymize":true,"proof_anonymize_text":null,"proof_hours_before_obscure":48,"proof_sequential":true,"proof_top":20,"proof_left":10,"proof_right":10,"proof_bottom":20,"proof_background_color":"#FFFFFF","proof_font_color":"#000000","proof_custom_css":null,"proof_border_radius":1,"proof_first_interval_time":1,"proof_locale":null};</script><!-- EndShopPopAddon -->
+</head>
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | split: '.' | first | handle }} data-animations">
+<!--   HC - 25 Oct '17 - loading screen -->
+<style>
+    .hc-load-screen {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      z-index: 99999;
+      text-align: center;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .hc-load-screen img {
+      left: 50%;
+      max-width: 90px;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      animation: fade 2s ease-out;
+      animation-iteration-count: infinite;
+    }
+    
+    .loaded .hc-load-screen {
+      visibility: hidden;
+      opacity: 0;
+    }
+    
+    .loader body {
+      overflow: hidden;
+    }
+    .loaded.loader body {
+      overflow: visible;
+    }
+    
+    @keyframes fade{
+      0% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.5;
+      }
+    }
+  </style>
+<div class="hc-load-screen">{{ 'loading.svg' | asset_url | img_tag }}</div>
+  <!--  End - HC - 25 Oct '17 - loading screen -->
+
+  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+  {% section 'header' %}
+
+  <div class="main-content" data-drawer-push>
+    <div class="main-content__wrapper">
+
+      <main class="content-for-layout" id="MainContent" role="main">
+        {{ content_for_layout }}
+      </main>
+
+      {% section 'footer' %}
+    </div>
+  </div>
+
+  {% include 'cart-drawer' %}
+
+<!-- BEEKETINGSCRIPT CODE START -->{% include 'bk-tracking' %}<!-- BEEKETINGSCRIPT CODE END -->
+
+  <script>
+    $( document ).ready(function() {
+      var top_banner_image = jQuery('.rte img[alt="top_page_banner"]');
+      var top_banner_image_holder = jQuery('.top_page_banner_img_holder');
+      top_banner_image_holder.append(top_banner_image);
+      
+      var bottom_banner_image = jQuery('.rte img[alt="bottom_page_banner"]');
+      var bottom_banner_image_holder = jQuery('.bottom_page_banner_img_holder');
+      bottom_banner_image_holder.append(bottom_banner_image);
+      
+      $('.s4com-sub-heading').on('click', function() {
+        if ($(this).css('color') == 'rgb(0, 0, 0)') {
+          $(this).css({'color': '#68923E'});
+        } else {
+          $(this).css({'color': 'rgb(0, 0, 0)'});
+        }
+      });
+    });
+  </script>
+  
+  <script>
+  var mySwiper = new Swiper ('.swiper-container', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+    slidesPerView: 4,
+    spaceBetween: 40,
+
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+    }
+  })
+  </script>
+  
+  <!--   HC - 25 Oct '17 - loading js -->
+  <script>
+    (function(w) {
+      w.addEventListener('load', function() {
+        var loader = document.querySelector('html.loader');
+        if (loader) {
+          loader.classList.add('loaded');
+        }
+      });
+    }(window));
+  </script>
+
+      {% if customer.tags.size > 0 %}
+        {% include 'fox-wholesale' %}
+      {% endif %}
+    
+  
+  
+  
+
+
+<!-- **BEGIN** Hextom USB Integration // Main Include - DO NOT MODIFY -->
+    {% include 'hextom_usb_main' %}
+    <!-- **END** Hextom USB Integration // Main Include - DO NOT MODIFY -->
+</body>
+</html>
+
+<!-- Begin Shopify-Afterpay JavaScript Snippet (v1.0.1) -->
+<script type="text/javascript">
+// Editable fields:
+var afterpay_min = 0.04;            // As per your Afterpay contract.
+var afterpay_max = 1000.00;         // As per your Afterpay contract.
+var afterpay_logo_theme = 'colour'; // Can be 'colour', 'black' or 'white'.
+
+// Overrides:
+// var afterpay_product_selector = '#product-price-selector';
+// var afterpay_cart_integration_enabled = true;
+var afterpay_cart_static_selector = '.cart-footer__subtotal';
+
+// Non-editable fields:
+var afterpay_shop_currency = {{ shop.currency | json }};
+var afterpay_shop_money_format = {{ shop.money_format | json }};
+var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
+var afterpay_theme_name = {{ theme.name | json }};
+var afterpay_product = {{ product | json }};
+var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
+var afterpay_cart_total_price = {{ cart.total_price | json }};
+var afterpay_js_snippet_version = '1.0.1';
+</script>
+<script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
+<!-- End Shopify-Afterpay JavaScript Snippet (v1.0.1) -->
+
+<style type="text/css">
+       div.product__content-header p.afterpay-paragraph {
+			text-align: center !important;
+       }
+       p.afterpay-paragraph {
+         	margin-top: 2% !important;         	
+          	color: inherit !important;
+          	font-family: inherit !important;
+        }  		
+        .afterpay-instalments {
+	      	font-weight: bold !important;
+        }
+        .afterpay-link-inner {
+	      	font-size: 12px;
+          	margin-left: 2px;
+        }
+
+.       .afterpay-text2 {
+          	margin-right: 2px;
+        }
+
+        @media only screen and (max-width : 480px) {
+            .afterpay-paragraph {
+                font-size: 12px;
+            }
+            .afterpay-link-inner {
+	        	font-size: 12px;
+            }
+            .afterpay-logo{
+                max-width: 25% !important;
+                height: auto !important;
+                width: auto !important;
+            }
+        }
+
+</style>

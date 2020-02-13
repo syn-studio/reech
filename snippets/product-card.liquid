@@ -1,0 +1,77 @@
+<div class="card critical-clear" data-animate>
+  <a href="{{ product.url | within: collection }}" class="card__wrapper{% if section.settings.show_spacing %} card__wrapper--padding{% endif %} text-center">
+
+    {% if product.featured_image %}
+      {% include 'card-image', type: product.featured_image %}
+    {% endif %}
+
+    <div class="card__info">
+      {% if section.settings.show_vendor %}
+        <div class="card__brand">{{ product.vendor }}</div>
+      {% endif %}
+
+      <h3 class="card__name h4 visually-hidden">{{ product.title }}</h3>
+<span class=" stamped-product-reviews-badge" data-product-sku="{{ product.handle }}" data-id="{{ product.id }}" style="display:block;">{{ product.metafields.stamped.badge }}</span>         <div class="text-center">
+              {% for tag in product.tags %}
+          
+          {% case tag %}
+          {% when "Green Logo" %}
+          <img class="text-center product-grid-logo" src="https://cdn.shopify.com/s/files/1/2214/1491/files/REECH_Green_mat_logo.jpg?4358477981596694502">
+          {% when "Blue Logo" %}
+          <img class="text-center product-grid-logo" src="https://cdn.shopify.com/s/files/1/2214/1491/files/REECH_Water_mat_logo.jpg?4358477981596694502">
+          {% when "Black Logo" %}  
+          <img class="text-center product-grid-logo" src="https://cdn.shopify.com/s/files/1/2214/1491/files/REECH_Hunger_mat_logo.jpg?4358477981596694502">
+          {% endcase %}
+         
+          {% endfor %}
+          </div>
+
+      {% if product.available %}
+        <div class="card__price">
+          {% if product.compare_at_price > product.price %}
+            {% comment %}
+              Product is on sale
+            {% endcomment %}
+            {% if product.price_varies %}
+              {% assign sale_price = product.price | money_without_trailing_zeros %}
+              <span class="visually-hidden"> {{ 'products.product.price' | t }} </span>
+              {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+            {% else %}
+              <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
+              <span class="card__price--sale">{{ product.price | money_without_trailing_zeros }}</span>
+
+              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              <span class="card__price--regular-strike">
+                <span class="card__price--regular">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+              </span>
+            {% endif %}
+
+            {% assign sale_text_length = 'products.product.on_sale' | t | size %}
+            <span class="card__badge{% if sale_text_length > 6 %} card__badge--large{% endif %}">
+              {{ 'products.product.on_sale' | t }}
+            </span>
+
+          {% else %}
+            {% comment %}
+              Not on sale, but could still have varying prices
+            {% endcomment %}
+            {% if product.price_varies %}
+              {% assign price = product.price | money_without_trailing_zeros %}
+              {{ 'products.product.from_text_html' | t: price: price }}
+            {% else %}
+              {{ product.price | money_without_trailing_zeros }}
+            {% endif %}
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="card__availability">
+          {{ 'products.product.sold_out' | t }}
+        </div>
+      {% endif %}
+    </div>
+  </a>
+
+<!-- **BEGIN** Hextom USB Integration // Collection Include - DO NOT MODIFY -->
+    {% include 'hextom_usb_coll' %}
+    <!-- **END** Hextom USB Integration // Collection Include - DO NOT MODIFY -->
+</div>

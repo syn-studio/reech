@@ -1,0 +1,173 @@
+{% assign instructions = article.metafields.myblog %}
+<div class="article" data-section-id="{{ section.id }}" data-section-type="article-template">
+  {% if instructions.backgroundimage %}
+    <div class="section-header-image-wrapper">
+      <img src="{{ instructions.backgroundimage }}" style="width:100%;" alt="{{ article.title }}" title="{{ article.title }}"/>     
+    </div>
+  {% endif %}  
+  <div class="page-width">
+  {% if article.image %}
+  <div class="biography-picture">
+  	<div class="bioimg"><img src="{{ article.image | img_url: 'master' }}"  alt="{{ article.title }}" title="{{ article.title }}"></div>
+    <div class="row biography-title"><h2>{{ instructions.toptitle }}</h2><h1>{{ article.title }}</h1></div>
+  </div>  
+  {% endif %}
+    <div class="article__wrapper grid cl">
+      <div class="sectionone article__content grid-item medium-up--four-twelfths small--one-whole fl">
+      {% if instructions.hometown %}
+       <div class="biography-section">
+       <h3>Hometown</h3>
+       <p>{{ instructions.hometown }}</p>
+       </div>
+       {% endif %}
+       {% if instructions.activity %}
+       <div class="biography-section">
+       <h3>activity</h3>
+       <p>{{ instructions.activity }}</p>
+       </div>
+       {% endif %}
+       <div class="biography-section">
+       <h3>Let's Connect</h3>
+       <ul class="list--inline">
+       {% if instructions.facebook %}
+       <li class="social-links__icon"><a target="_blank" href="{{ instructions.facebook }}" >{% include 'icon-facebook' %}</a></li>
+       {% endif %}
+       {% if instructions.twitter %}
+       <li class="social-links__icon"><a target="_blank" href="{{ instructions.twitter }}" >{% include 'icon-twitter' %}</a></li>
+       {% endif %}
+       {% if instructions.instagram %}
+       <li class="social-links__icon"><a target="_blank" href="{{ instructions.instagram }}" >{% include 'icon-instagram' %}</a></li>
+       {% endif %}
+       {% if instructions.linkedin %}
+       <li class="social-links__icon"><a target="_blank" href="{{ instructions.linkedin }}" >{% include 'icon-pinterest' %}</a></li>
+       {% endif %}       
+       </ul>
+       </div>
+       {% if instructions.website %}
+       <div class="biography-section"><h3>Websites</h3>
+	   <p><a href="{{ instructions.website }}" target="_blank">{{ instructions.website }}</a></p>
+	   </div>
+       {% endif %}
+      </div>
+	  <div class="sectiontwo article__content grid-item medium-up--four-twelfths small--one-whole fl">
+        <div class="biography-section">
+          {% if instructions.question1 %}
+          <h2>{{ instructions.question1 }}</h2>
+          <p>{{ instructions.answer1 }}</p><br />
+          {% endif %}
+          {% if instructions.question2 %}
+          <h2>{{ instructions.question2 }}</h2>
+          <p>{{ instructions.answer2 }}</p><br />
+          {% endif %}
+          {% if instructions.question3 %}
+          <h2>{{ instructions.question3 }}</h2>
+          <p>{{ instructions.answer3 }}</p><br />
+          {% endif %}
+          {% if instructions.question4 %}
+          <h2>{{ instructions.question4 }}</h2>
+          <p>{{ instructions.answer4 }}</p><br />
+          {% endif %}
+          {% if instructions.question5 %}
+          <h2>{{ instructions.question5 }}</h2>
+          <p>{{ instructions.answer5 }}</p>                    
+          {% endif %}
+          {% if instructions.question6 %}
+          <h2>{{ instructions.question6 }}</h2>
+          <p>{{ instructions.answer6 }}</p><br />
+          {% endif %}
+          {% if instructions.question7 %}
+          <h2>{{ instructions.question7 }}</h2>
+          <p>{{ instructions.answer7 }}</p><br />
+          {% endif %}
+          {% if instructions.question8 %}
+          <h2>{{ instructions.question8 }}</h2>
+          <p>{{ instructions.answer8}}</p><br />
+          {% endif %}
+          {% if instructions.question9 %}
+          <h2>{{ instructions.question9 }}</h2>
+          <p>{{ instructions.answer9 }}</p><br />
+          {% endif %}
+          {% if instructions.question10 %}
+          <h2>{{ instructions.question10 }}</h2>
+          <p>{{ instructions.answer10 }}</p>
+          {% endif %}
+      </div>
+      </div>
+	  <div class="sectionthree article__content grid-item medium-up--four-twelfths small--one-whole fl">
+        <div class="biography-section">         
+          {% if instructions.more1 %}
+          <h2>More from this ambassador</h2>
+          <p>{{ instructions.more1 }}</p><br />
+          {% endif %}
+          {% if instructions.more2 %}
+          <p>{{ instructions.more2 }}</p><br />
+          {% endif %}
+          {% if instructions.more3 %}
+          <p>{{ instructions.more3 }}</p><br />
+          {% endif %}
+          {% if instructions.more4 %}
+          <p>{{ instructions.more4 }}</p><br />
+          {% endif %}
+          {% if instructions.more5 %}
+          <p>{{ instructions.more5 }}</p><br />
+          {% endif %}
+      </div>
+      </div>            
+    </div>    
+    {% if instructions.youtube %}
+    <iframe id="video2-77" class="video" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="100%" height="600" src="{{ instructions.youtube }}"></iframe>
+    {% endif %}
+    
+  </div>  
+</div>
+
+{% schema %}
+{
+  "name": "Posts",
+  "settings": [     
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": "Enable sharing for blog articles",
+      "info": "Make sure you have enabled social sharing in general settings",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
+<style>
+.bioimg {float: left;display: block;width: 30.4364%;position: relative;top: -100px;}
+.bioimg img {border-radius: 100%;width: 100%;}
+.biography-section h3, .biography-section h2 {    
+    font-family: "Calibre", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 2px;
+    text-transform: uppercase;    font-size: 15px;
+}
+  .biography .biography-details p {
+    font-size: 25px;font-family: "Calibre", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+    font-weight: 300;
+    line-height: 1.2;
+}
+.biography-title{text-align:center;margin-top:15px;position: relative;left: -85px;}
+.biography-title h2{font-size:20px;}
+.biography-title h1{font-size: 34px;}
+.biography-section {margin-bottom:3.375em;}
+.fl{float:left;}  
+.cl{width:100%;float:none;clear:both;padding:0px;margin-left: 0;}
+p{font-size: 16px;line-height: 18px;}
+.medium-up--four-twelfths{padding:0 20px;}
+iframe {   
+    width: 100%;    
+}
+.sectionone p{font-size:20px;}  
+.sectiontwo p{font-size:14px;} 
+p a{text-decoration: none;font-size: 14px;}
+@media (max-width:768px)
+{
+  .biography-section{text-align:center;}
+  .bioimg{width:100%;}
+  .biography-section {margin-bottom: 2.075em;}
+}
+</style>

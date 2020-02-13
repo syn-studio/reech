@@ -1,0 +1,33 @@
+<div class="hc-slider">
+  {% for block in section.blocks %}
+  <div>{{ block.settings.image | img_url: 'master' | img_tag }}</div>
+  {% endfor %}
+</div>
+
+<script>
+  $('.hc-slider').slick({
+  infinite: true,
+  slidesToShow: 3,
+  slidesToScroll: 3
+});
+</script>
+
+{% schema %}
+  {
+    "name": "Slider images",
+    "settings": [],
+	"blocks": [
+	  {
+        "type": "slider-content",
+        "name": "Slider images",
+        "settings": [
+			{
+			  "type": "image_picker",
+			  "id": "image",
+			  "label": "Image"
+			}
+		]
+	  }
+	]  
+  }
+{% endschema %}

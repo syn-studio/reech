@@ -1,0 +1,536 @@
+<div class="ambassadors-join-main">
+{% if section.settings.hero_2 == true %}
+
+{% if section.settings.image != blank %}
+  <style>
+    .hero--{{ section.id }} {
+      background-position: {{ section.settings.alignment }};
+    }
+  </style>
+{% endif %}
+
+{% if section.settings.show_overlay %}
+  <style>
+    .hero--{{ section.id }}.hero__overlay::before {
+      background-color: {{ section.settings.overlay_color }};
+      opacity: {{ section.settings.overlay_opacity }};
+    }
+
+    .hero--{{ section.id }} .hero__overlay-title--overlay,
+    .hero--{{ section.id }} .mega-subtitle {
+      color: {{ section.settings.overlay_text }};
+    }
+  </style>
+{% endif %}
+
+<div class="hero hero--{{ section.id }} hero--{{ section.settings.hero_size }}{% if section.settings.show_overlay %} hero__overlay{% endif %} lazyload" data-bgset="{% include 'bgset', image: section.settings.image %}" data-section-id="{{ section.id }}" data-section-type="hero">
+  <div class="hero__inner">
+    <div class="page-width text-center">
+      
+      {% if section.settings.title != blank %}
+      <p style="text-align:left;" class="ambassadors-join-text" data-animate><b>{{ section.settings.title | escape }}</b></p>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div style="text-align:left;" >{{ section.settings.text }}</div>
+      {% endif %}
+      
+      {% if section.settings.title1 != blank %}
+      <p style="text-align:left;" class="ambassadors-join-text" data-animate><b>{{ section.settings.title1 | escape }}</b></p>
+      {% endif %}
+      {% if section.settings.text1 != blank %}
+        <div style="text-align:left;">{{ section.settings.text1 }}</div>
+      {% endif %}
+      
+      {% if section.settings.title2 != blank %}
+      <p style="text-align:left;" class="ambassadors-join-text" data-animate><b>{{ section.settings.title2 | escape }}</b></p>
+      {% endif %}
+      {% if section.settings.text2 != blank %}
+        <div style="text-align:left;">{{ section.settings.text2 }}</div>
+      {% endif %}
+      
+      {% if section.settings.title3 != blank %}
+      <p style="text-align:left;" class="ambassadors-join-text" data-animate><b>{{ section.settings.title3 | escape }}</b></p>
+      {% endif %}
+      {% if section.settings.text3 != blank %}
+        <div style="text-align:left;">{{ section.settings.text3}}</div>
+      {% endif %}
+      
+      {% if section.settings.title4 != blank %}
+      <p style="text-align:left;" class="ambassadors-join-text" data-animate><b>{{ section.settings.title4 | escape }}</b></p>
+      {% endif %}
+      {% if section.settings.text4 != blank %}
+        <div style="text-align:left;">{{ section.settings.text4 }}</div>
+      {% endif %}
+      
+      {% if section.settings.title5 != blank %}
+      <p style="text-align:left;" class="ambassadors-join-text" data-animate><b>{{ section.settings.title5 | escape }}</b></p>
+      {% endif %}
+      {% if section.settings.text5 != blank %}
+        <div style="text-align:left;">{{ section.settings.text5 }}</div>
+      {% endif %}
+      
+      {% if section.settings.title6 != blank %}
+      <p style="text-align:left;" class="ambassadors-join-text" data-animate><b>{{ section.settings.title6 | escape }}</b></p>
+      {% endif %}
+      {% if section.settings.text6 != blank %}
+        <div style="text-align:left;">{{ section.settings.text6 }}</div>
+      {% endif %}
+      
+      {% if section.settings.title7 != blank %}
+      <p style="text-align:left;" class="ambassadors-join-text" data-animate><b>{{ section.settings.title7 | escape }}</b></p>
+      {% endif %}
+      {% if section.settings.text7 != blank %}
+        <div style="text-align:left;">{{ section.settings.text7 }}</div>
+      {% endif %}
+      
+      {% if section.settings.title8 != blank %}
+      <p style="text-align:left;" class="ambassadors-join-text" data-animate><b>{{ section.settings.title8 | escape }}</b></p>
+      {% endif %}
+      {% if section.settings.text8 != blank %}
+        <div style="text-align:left;">{{ section.settings.text8 }}</div>
+      {% endif %}
+      
+      {% if section.settings.title9 != blank %}
+      <p style="text-align:left;" class="ambassadors-join-text" data-animate><b>{{ section.settings.title9 | escape }}</b></p>
+      {% endif %}
+      {% if section.settings.text9 != blank %}
+        <div style="text-align:left;">{{ section.settings.text9 }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<br><br>
+<div>
+ <div class="page-width">
+   <p style="font-size: 26px;"><b>Personal Information</b></p>
+   
+   {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          <p class="form-success">
+            {{ 'contact.form.post_success' | t }}
+          </p>
+        {% endif %}
+
+        {{ form.errors | default_errors }}
+   <div id="fieldset_99dkrc7" class="fieldset fieldset-7 " role="group" aria-labelledby="legend_99dkrc7">
+      <ul class="form-list" role="group">
+         <li class="fields ">
+            <div id="field_99dkrc115" role="group" aria-labelledby="label_field99dkrc115" aria-describedby="comment_field99dkrc115" class="field  type-text webforms-fields-115 webforms-fields-ambassadorFormFirstName">
+               <label id="label_field99dkrc115" for="field99dkrc115" class="required">
+               <em>*</em>
+               First Name:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc115" type="text" name="contact[First Name]" class="required-entry input-text validation-failed" style="" placeholder="" value="" aria-labelledby="label_field99dkrc115" aria-required="true" required>
+                  
+               </div>
+            </div>
+            <div id="field_99dkrc116" role="group" aria-labelledby="label_field99dkrc116" aria-describedby="comment_field99dkrc116" class="field  type-text webforms-fields-116 webforms-fields-ambassadorFormLastName">
+               <label id="label_field99dkrc116" for="field99dkrc116" class="required">
+               <em>*</em>
+               Last Name:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc116" type="text" name="contact[Last Name]" class="required-entry input-text validation-failed" style="" placeholder="" value="" aria-labelledby="label_field99dkrc116" aria-required="true" required>
+                  
+               </div>
+            </div>
+         </li>
+         <li class="fields ">
+            <div id="field_99dkrc117" role="group" aria-labelledby="label_field99dkrc117" aria-describedby="comment_field99dkrc117" class="field  type-select webforms-fields-117 webforms-fields-ambassadorFormCertified">
+               <label id="label_field99dkrc117" for="field99dkrc117" class="required">
+               <em>*</em>
+               Are you a certified yoga teacher?                                                                                    </label>
+               <div class="input-box validation-passed">
+                  <select name="contact[Certified Teacher]" id="field99dkrc117" class="required-entry validation-passed" aria-labelledby="label_field99dkrc117" aria-required="true" required>
+                     <option value="Select" selected="">Select</option>
+                     <option value="Yes">Yes</option>
+                     <option value="No">No</option>
+                  </select>
+               </div>
+            </div>
+            <div id="field_99dkrc247" role="group" aria-labelledby="label_field99dkrc247" aria-describedby="comment_field99dkrc247" class="field  type-select webforms-fields-247 webforms-fields-ambassadorLevelCertified">
+               <label id="label_field99dkrc247" for="field99dkrc247" class="required">
+               <em>*</em>
+               What level of certification?                                                                                    </label>
+               <div class="input-box validation-passed">
+                  <select name="contact[Level Certification]" id="field99dkrc247" class="required-entry validation-passed" aria-labelledby="label_field99dkrc247" aria-required="true" required>
+                     <option value="Select" selected="">Select</option>
+                     <option value="None">None</option>
+                     <option value="Under 200 hour">Under 200 hour</option>
+                     <option value="200 hour">200 hour</option>
+                     <option value="300 hour">300 hour</option>
+                     <option value="500 hour">500 hour</option>
+                     <option value="Over 500 hour">Over 500 hour</option>
+                  </select>
+               </div>
+            </div>
+         </li>
+         <li class="fields ">
+            <div id="field_99dkrc122" role="group" aria-labelledby="label_field99dkrc122" aria-describedby="comment_field99dkrc122" class="field  type-text webforms-fields-122 webforms-fields-ambassadorFormCountry">
+               <label id="label_field99dkrc122" for="field99dkrc122" class="required">
+               <em>*</em>
+               Country:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc122" type="text" name="contact[country]" class="required-entry input-text validation-failed" style="" placeholder="" value="" aria-labelledby="label_field99dkrc122" aria-required="true" required>
+                  
+               </div>
+            </div>
+            <div id="field_99dkrc124" role="group" aria-labelledby="label_field99dkrc124" aria-describedby="comment_field99dkrc124" class="field  type-text webforms-fields-124 webforms-fields-ambassadorFormPhone">
+               <label id="label_field99dkrc124" for="field99dkrc124" class="required">
+               <em>*</em>
+               Phone:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc124" type="text" name="contact[phone]" class="required-entry input-text validation-failed" style="" placeholder="" value="" aria-labelledby="label_field99dkrc124" aria-required="true" required>
+                  
+               </div>
+            </div>
+         </li>
+         <li class="fields ">
+            <div id="field_99dkrc126" role="group" aria-labelledby="label_field99dkrc126" aria-describedby="comment_field99dkrc126" class="field  type-email webforms-fields-126 webforms-fields-ambassadorFormEmail">
+               <label id="label_field99dkrc126" for="field99dkrc126" class="required">
+               <em>*</em>
+               E-mail:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc126" type="text" name="contact[email]" class="required-entry validate-email input-text validation-failed" required>
+                  
+               </div>
+            </div>
+            <div id="field_99dkrc127" role="group" aria-labelledby="label_field99dkrc127" aria-describedby="comment_field99dkrc127" class="field  type-text webforms-fields-127 webforms-fields-ambassadorFormWebsite">
+               <label id="label_field99dkrc127" for="field99dkrc127" class="required">
+               Website:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc127" type="text" name="contact[website]" class="required-entry input-text" style="" placeholder="" value="" >
+                  
+               </div>
+            </div>
+         </li>
+      </ul>
+   </div>
+   <div id="fieldset_99dkrc19" class="fieldset fieldset-19 " role="group" aria-labelledby="legend_99dkrc19">
+      <h2 class="legend" id="legend_99dkrc19">Social</h2>
+      <ul class="form-list" role="group">
+         <li class="fields ">
+            <div id="field_99dkrc255" role="group" aria-labelledby="label_field99dkrc255" aria-describedby="comment_field99dkrc255" class="field  type-text webforms-fields-255 webforms-fields-ambassadorFormFacebook">
+               <label id="label_field99dkrc255" for="field99dkrc255" class="required">
+               <em>*</em>
+               Facebook:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc255" type="text" name="contact[facebook]" class="required-entry input-text validation-failed" style="" placeholder="" value="" aria-labelledby="label_field99dkrc255" aria-required="true" required>
+                  
+               </div>
+            </div>
+            <div id="field_99dkrc256" role="group" aria-labelledby="label_field99dkrc256" aria-describedby="comment_field99dkrc256" class="field  type-text webforms-fields-256 webforms-fields-ambassadorFormInstgram">
+               <label id="label_field99dkrc256" for="field99dkrc256" class="required">
+               <em>*</em>
+               Instagram:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc256" type="text" name="contact[instagram]" class="required-entry input-text validation-failed" style="" placeholder="" value="" aria-labelledby="label_field99dkrc256" aria-required="true" required>
+                  
+               </div>
+            </div>
+         </li>
+         <!--li class="fields ">
+            <div id="field_99dkrc272" role="group" aria-labelledby="label_field99dkrc272" aria-describedby="comment_field99dkrc272" class="field  type-text webforms-fields-272 webforms-fields-ambassadorFormTwitter">
+               <label id="label_field99dkrc272" for="field99dkrc272">
+               Twitter:                                                                                    </label>
+               <div class="input-box">
+                  <input id="field99dkrc272" type="text" name="contact[twitter]" class="input-text validation-passed" style="" placeholder="" value="" aria-labelledby="label_field99dkrc272">
+               </div>
+            </div>
+            <div id="field_99dkrc273" role="group" aria-labelledby="label_field99dkrc273" aria-describedby="comment_field99dkrc273" class="field  type-text webforms-fields-273 webforms-fields-ambassadorFormSnapChat">
+               <label id="label_field99dkrc273" for="field99dkrc273">
+               Snapchat:                                                                                    </label>
+               <div class="input-box">
+                  <input id="field99dkrc273" type="text" name="contact[snapchat]" class="input-text validation-passed" style="" placeholder="" value="" aria-labelledby="label_field99dkrc273">
+               </div>
+            </div>
+         </li-->
+         <!--li class="fields ">
+            <div id="field_99dkrc257" role="group" aria-labelledby="label_field99dkrc257" aria-describedby="comment_field99dkrc257" class="field  type-text webforms-fields-257 webforms-fields-ambassadorFormSocialMedia">
+               <label id="label_field99dkrc257" for="field99dkrc257">
+               Other social media:                                                                                    </label>
+               <div class="input-box">
+                  <input id="field99dkrc257" type="text" name="contact[other_social_media]" class="input-text validation-passed" style="" placeholder="separate multiple addresses by comma" value="" aria-labelledby="label_field99dkrc257">
+               </div>
+            </div>
+         </li-->
+      </ul>
+   </div>
+   <div style="clear:both;" id="fieldset_99dkrc8" class="fieldset fieldset-8 " role="group" aria-labelledby="legend_99dkrc8">
+      <h2 class="legend" id="legend_99dkrc8">Instructor Information</h2>
+      <ul class="form-list" role="group">
+         <li class="fields ">
+            <div id="field_99dkrc129" role="group" aria-labelledby="label_field99dkrc129" aria-describedby="comment_field99dkrc129" class="field  type-text webforms-fields-129 webforms-fields-ambassadorWeeklyHours">
+               <label id="label_field99dkrc129" for="field99dkrc129" class="required">
+               <em>*</em>
+               Classes taught per week:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc129" type="text" name="contact[classes_taught_week]" class="required-entry input-text validation-failed" style="" placeholder="" value="" aria-labelledby="label_field99dkrc129" aria-required="true" required>
+                  
+               </div>
+            </div>
+         </li>
+      </ul>
+   </div>
+   <div style="clear:both;" id="fieldset_99dkrc9" class="fieldset fieldset-9 " role="group" aria-labelledby="legend_99dkrc9">
+      <h2 class="legend" id="legend_99dkrc9">Studio Information</h2>
+      <ul class="form-list" role="group">
+         <li class="fields ">
+            <div id="field_99dkrc136" role="group" aria-labelledby="label_field99dkrc136" aria-describedby="comment_field99dkrc136" class="field  type-text webforms-fields-136 webforms-fields-ambassadorFormStudioName">
+               <label id="label_field99dkrc136" for="field99dkrc136" class="required">
+               <em>*</em>
+               Studio Name:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc136" type="text" name="contact[studio name]" class="required-entry input-text validation-failed" style="" placeholder="separate multiple studios by a comma" value="" aria-labelledby="label_field99dkrc136" aria-required="true" required>
+                  
+               </div>
+            </div>
+         </li>
+         <li id="field_99dkrc147_row" class="wide webforms-fields-row-147">
+            <div style="clear:both;" id="field_99dkrc147" role="group" aria-labelledby="label_field99dkrc147" aria-describedby="comment_field99dkrc147" class="  type-text webforms-fields-147 webforms-fields-ambassadorFormStudioWebsite">
+               <label id="label_field99dkrc147" for="field99dkrc147" class="required">
+               <em>*</em>
+               Studio Website:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc147" type="text" name="contact[studio website]" class="required-entry input-text validation-failed" style="" placeholder="separate multiple addresses by a comma" value="" aria-labelledby="label_field99dkrc147" aria-required="true" required>
+                  
+               </div>
+            </div>
+         </li>
+         <li id="field_99dkrc148_row" class="wide webforms-fields-row-148">
+            <div id="field_99dkrc148" role="group" aria-labelledby="label_field99dkrc148" aria-describedby="comment_field99dkrc148" class="  type-text webforms-fields-148 webforms-fields-ambassadorFormStudioWeeklyClassCount">
+               <label id="label_field99dkrc148" for="field99dkrc148" class="required">
+               <em>*</em>
+               Number of classes you teach weekly:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc148" type="text" name="contact[number_classes_teach_weekly]" class="required-entry input-text validation-failed" style="" placeholder="" value="" aria-labelledby="label_field99dkrc148" aria-required="true" required>
+                  
+               </div>
+            </div>
+         </li>
+      </ul>
+   </div>
+   <div id="fieldset_99dkrc10" class="fieldset fieldset-10 " role="group" aria-labelledby="legend_99dkrc10">
+      <h2 class="legend" id="legend_99dkrc10">Getting To Know You</h2>
+      <ul class="form-list" role="group">
+         <li id="field_99dkrc297_row" class="wide webforms-fields-row-297">
+            <div id="field_99dkrc297" role="group" aria-labelledby="label_field99dkrc297" aria-describedby="comment_field99dkrc297" class="  type-text webforms-fields-297 webforms-fields-ambassadorFormMiscInfoBrandMat">
+               <label id="label_field99dkrc297" for="field99dkrc297" class="required">
+               <em>*</em>
+               What brand of mat do you currently practice on?                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input id="field99dkrc297" type="text" name="contact[brand_mat_currently_practice]" class="required-entry input-text validation-failed" style="" placeholder="" value="" aria-labelledby="label_field99dkrc297" aria-required="true" required>
+                  
+               </div>
+            </div>
+         </li>
+         <li id="field_99dkrc158_row" class="wide webforms-fields-row-158">
+            <div id="field_99dkrc158" role="group" aria-labelledby="label_field99dkrc158" aria-describedby="comment_field99dkrc158" class="  type-textarea webforms-fields-158 webforms-fields-ambassadorFormMiscInfo1">
+               <label id="label_field99dkrc158" for="field99dkrc158" class="required">
+               <em>*</em>
+               Bio:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <textarea name="contact[bio]" id="field99dkrc158" class="required-entry validation-failed" placeholder="tell us about yourself!" aria-labelledby="label_field99dkrc158" aria-required="true" required></textarea>
+                  
+               </div>
+            </div>
+         </li>
+         <!--li class="fields">
+            <div id="field_99dkrc209" role="group" aria-labelledby="label_field99dkrc209" aria-describedby="comment_field99dkrc209" class="field  type-image webforms-fields-209 webforms-fields-ambassadorFormMiscInfo3">
+               <label id="label_field99dkrc209" for="field99dkrc209" class="required">
+               <em>*</em>
+               Headshot:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input type="file" class="file-upload-main" name="contact[headshot]" id="file_209" class="" style="">
+                  <p id="comment_field99dkrc209" class="webforms-fields-comment" tabindex="0">
+                     (jpg or png)                                            
+                  </p>
+               </div>
+            </div>
+            <div id="field_99dkrc271" role="group" aria-labelledby="label_field99dkrc271" aria-describedby="comment_field99dkrc271" class="field  type-file webforms-fields-271 webforms-fields-ambassadorFormMiscInfo30">
+               <label id="label_field99dkrc271" for="field99dkrc271" class="required">
+               <em>*</em>
+               Teacher Training Certificate:                                                                                    </label>
+               <div class="input-box validation-error">
+                  <input type="file" class="file-upload-main" name="contact[teacher_training_certificate]" id="file_271" class="" style="">
+                  <p id="comment_field99dkrc271" class="webforms-fields-comment" tabindex="0">
+                     (pdf or doc)                                            
+                  </p>
+               </div>
+            </div>
+         </li-->
+         <!--li style="margin-top: 55px; clear: both; float: left; width: 100%;" class="fields ">
+            <div id="field_99dkrc259" role="group" aria-labelledby="label_field99dkrc259" aria-describedby="comment_field99dkrc259" class="field  type-select webforms-fields-259 webforms-fields-ambassadorPROprogram fields-ambassadorPROprogram1">
+               <label id="label_field99dkrc259" for="field99dkrc259" class="required">
+               <em>*</em>
+               Have you also applied to the PRO Program?                                                                                    </label>
+               <div class="input-box validation-passed">
+                  <select name="contact[applied_pro_program]" id="field99dkrc259" class="required-entry validation-passed" aria-labelledby="label_field99dkrc259" aria-required="true" style="">
+                     <option value="Select" selected="">Select</option>
+                     <option value="Yes">Yes</option>
+                     <option value="No">No</option>
+                  </select>
+               </div>
+            </div>
+         </li-->
+      </ul>
+   </div>
+   <div class="buttons-set">
+      <p class="required">* Required Fields</p>
+      <button type="submit" class="button validation-passed" id="webform_99dkrc_submit_button" title="submit">
+      <span>
+      <span>Apply</span>
+      </span>
+      </button>
+   </div>
+{% endform %}
+   
+   
+ </div>
+</div>
+</div>
+
+{% endif %}
+{% schema %}
+{
+  "name": "Questions Join", 
+  "class": "index-section index-section--image-with-text-overlay",
+  "settings": [
+    {
+    "type": "checkbox",
+    "id": "hero_2",
+    "default": false,
+    "label": "Enable Section"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Questions",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Answers",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+    },
+    {
+      "type": "text",
+      "id": "title1",
+      "label": "Questions",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "textarea",
+      "id": "text1",
+      "label": "Answers",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+    },
+    {
+      "type": "text",
+      "id": "title2",
+      "label": "Questions",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "textarea",
+      "id": "text2",
+      "label": "Answers",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+    },
+    {
+      "type": "text",
+      "id": "title3",
+      "label": "Questions",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "textarea",
+      "id": "text3",
+      "label": "Answers",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+    },
+    {
+      "type": "text",
+      "id": "title4",
+      "label": "Questions",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "textarea",
+      "id": "text4",
+      "label": "Answers",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+    },
+    {
+      "type": "text",
+      "id": "title5",
+      "label": "Questions",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "textarea",
+      "id": "text5",
+      "label": "Answers",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+    },
+    {
+      "type": "text",
+      "id": "title6",
+      "label": "Questions",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "textarea",
+      "id": "text6",
+      "label": "Answers",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+    },
+    {
+      "type": "text",
+      "id": "title7",
+      "label": "Questions",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "textarea",
+      "id": "text7",
+      "label": "Answers",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+    },
+    {
+      "type": "text",
+      "id": "title8",
+      "label": "Questions",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "textarea",
+      "id": "text8",
+      "label": "Answers",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+    },
+    {
+      "type": "text",
+      "id": "title9",
+      "label": "Questions",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "textarea",
+      "id": "text9",
+      "label": "Answers",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text overlay",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

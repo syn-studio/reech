@@ -1,0 +1,81 @@
+<div class="top_page_banner_img_holder"></div>
+
+{% section 'hero-11' %}
+{% section 'feature-row-2' %}
+{% section 'hero-12' %}
+{% section 'hero-13' %}
+{% section 'hero-14' %}
+{% section 'hero-15' %}
+{% section 'hero-16' %}
+{% section 'hero-17' %}
+{% section 'hero-18' %}
+{% section 'hero-19' %}
+{% section 'hero-20' %}
+
+<div class="page-width">
+  <header class="section-header text-center">
+    <h1 style="display:none;" class="section-header__title h2">{{ page.title }}</h1>
+  </header>
+  <div class="grid">
+    <div class="grid__item medium-up--four-fifths medium-up--push-one-tenth">
+      <div class="rte">
+        <!-- HC - Split content - 23 Oct '17 -->
+        {% assign content = page.content | split: '<!-- split -->' %}
+        {{ content[0] }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if settings.page_swiper %}
+<!-- Slider main container -->
+<div class="hc-slider">
+</div>
+{% endif %}
+
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--four-fifths medium-up--push-one-tenth">
+      <div class="rte">
+        <!-- HC - Split content - 23 Oct '17 -->
+        {% assign content = page.content | split: '<!-- split -->' %}
+        {{ content[1] }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom_page_banner_img_holder"></div>
+
+<!-- HC - Custom slider from the imgs on the page - 23 Oct '17 -->
+<script>
+  var slides = '';
+  $('.rte img[alt="slider"]').each(function(){
+    slides += '<div class="swiper-slide"><img src="' + $(this).attr('src') +'"></div>';
+    
+    $(this).css('display', 'none');
+  });
+  
+  $('.hc-slider').append(slides);
+  
+  $('.hc-slider').slick({
+    infinite: true,
+    centerMode: true,
+    arrows: false,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    focusOnSelect: true,
+    dots: true,
+    responsive: [
+      {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+        }
+      }
+    ]
+  });
+</script>
