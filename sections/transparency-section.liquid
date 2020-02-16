@@ -4,7 +4,7 @@
         <p>No such thing as TMI, we show you where your money goes with every REECH mat you purchase.</p>
     </div>
     <div class="transparency-section--carousel">
-        <p>(our average costs) ⟶</p>
+        <p class='row row__align-center row__center'>(our average costs) {{ 'arrow.png' | file_url | img_tag }}</p>
         <div class="transparency-section--carousel--items">
             <div class="transparency-section--carousel--items--item">
                 <div class="transparency-section--carousel--items--item--img">
@@ -48,7 +48,7 @@
                 <h4 class='transparency-section--carousel--items--item--title'>Eco-packaging</h4>
                 <p class='transparency-section--carousel--items--item--price'>$2</p>
                 <p class='transparency-section--carousel--items--item--desc'>We use recyclable & biodegradable packaging materials.</p>
-                <p class="transparency-section--carousel--items--item--plastics">plastic free</p>
+                <p class="transparency-section--carousel--items--item--plastics row row__align-center row__center">{{ 'check.png' | file_url | img_tag }}plastic free</p>
             </div>
             <div class="transparency-section--carousel--items--item">
                 <div class="transparency-section--carousel--items--item--img">
@@ -76,3 +76,14 @@
         <button class="bttn">Try now</button>
     </div>
 </div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const elem = document.querySelector('.transparency-section--carousel--items')
+        const carousel = new Flickity(elem, {
+            cellAlign: 'left',
+            contain: true,
+            pageDots: false
+        })
+    })
+</script>

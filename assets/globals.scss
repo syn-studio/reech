@@ -33,6 +33,10 @@
     &__align-center {
         align-items: center;
     }
+
+    &__center {
+        justify-content: center;
+    }
 }
 
 .content-container {

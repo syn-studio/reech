@@ -1,9 +1,17 @@
 <div class="navbar">
-    <div class="navbar--middle">
-        <a href="#">shop now</a>
-        <a href="#">
-            {{ 'logo.png' | file_url | img_tag }}
-        </a>
-        <a href="#">FAQ</a>
+    <div class="navbar--content">
+        <div class="navbar--content--middle">
+            <div class='row row__align-center row__center'>
+                <a href="#">shop now</a>
+                <a href="#">
+                    {{ 'logo.png' | file_url | img_tag }}
+                </a>
+                <a href="#">FAQ</a>
+               </div>
+        </div>
+        <div class="navbar--content--right">
+            <a href="#">{{ 'user.png' | file_url | img_tag }}</a>
+            <a href="#">{{ 'bag.png' | file_url | img_tag }}</a>
+        </div>
     </div>
 </div>
