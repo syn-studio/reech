@@ -40,3 +40,6 @@
 .content-container {
   width: 1100px;
   margin: 0 auto; }
+
+.close-modal-btn {
+  cursor: pointer; }

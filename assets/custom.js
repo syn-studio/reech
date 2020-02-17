@@ -52,5 +52,32 @@ $(document).ready(function(){
 });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
 
+  const trialModal = document.querySelector('.free-trial-modal')
+  const howWeOperateModal = document.querySelector('.how-we-operate-modal')
 
+  const openFreeTrialModalBtn = document.querySelector('.main-hero--content--header--cta-container span')
+  const openHowWeOperateModalBtn = document.querySelector('.how-we-operate-btn')
+  
+  openFreeTrialModalBtn.onclick = () => openModal(trialModal)
+  openHowWeOperateModalBtn.onclick = () => openModal(howWeOperateModal)
+
+  const closeBtns = document.querySelectorAll('.close-modal-btn')
+  const allModals = document.querySelectorAll('.full-page-modal')
+
+  closeBtns.forEach(btn => {
+    btn.onclick = () => {
+      allModals.forEach(modal => closeModal(modal))
+    }
+  })
+  
+  const openModal = (el) => {
+    el.classList.add('full-page-modal__active')
+  }
+  
+  const closeModal = (el) => {
+    el.classList.remove('full-page-modal__active')
+  }
+
+})
