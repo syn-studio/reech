@@ -56,12 +56,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const trialModal = document.querySelector('.free-trial-modal')
   const howWeOperateModal = document.querySelector('.how-we-operate-modal')
+  const sustainabilityModal = document.querySelector('.sustainability-modal')
+  const theTruthModal = document.querySelector('.the-truth-modal')
+  const flexibleCostModal = document.querySelector('.flexible-cost-modal')
+  const wholesaleModal = document.querySelector('.wholesale-modal')
+  const impactModal = document.querySelector('.impact-modal')
 
   const openFreeTrialModalBtn = document.querySelector('.main-hero--content--header--cta-container span')
   const openHowWeOperateModalBtn = document.querySelector('.how-we-operate-btn')
+  const openSustainabilityModalBtn = document.querySelectorAll('.sustainability-modal-btn')
+  const openTheTruthModalBtn = document.querySelector('.the-truth-modal-btn')
+  const openFlexibleCostModalBtn = document.querySelector('.flexible-cost-modal-btn')
+  const openWholesaleModalBtn = document.querySelector('.wholesale-modal-btn')
+  const openImpactModalBtn = document.querySelector('.impact-modal-btn')
   
   openFreeTrialModalBtn.onclick = () => openModal(trialModal)
   openHowWeOperateModalBtn.onclick = () => openModal(howWeOperateModal)
+  openSustainabilityModalBtn.forEach(btn => btn.onclick = () => openModal(sustainabilityModal))
+  openTheTruthModalBtn.onclick = () => openModal(theTruthModal)
+  openFlexibleCostModalBtn.onclick = () => openModal(flexibleCostModal)
+  // openWholesaleModalBtn.onclick = () => openModal(wholesaleModal)
+  openImpactModalBtn.onclick = () => openModal(impactModal)
 
   const closeBtns = document.querySelectorAll('.close-modal-btn')
   const allModals = document.querySelectorAll('.full-page-modal')

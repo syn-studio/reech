@@ -457,29 +457,107 @@
     align-items: center; }
     .full-page-modal--container--content {
       border: 2px solid black;
-      border-radius: 10px;
+      border-radius: 15px;
       text-align: center;
       padding-bottom: 50px;
       background: white;
-      width: 500px; }
-      .full-page-modal--container--content.free-trial-modal-content {
-        padding: 30px 60px; }
+      width: 500px;
+      padding: 30px 60px; }
+      .full-page-modal--container--content.dark {
+        background: #262626;
+        color: white; }
       .full-page-modal--container--content h2 {
-        font-size: 28px; }
+        font-size: 28px;
+        color: inherit; }
       .full-page-modal--container--content p {
         font-size: 16px;
         font-weight: 500; }
+      .full-page-modal--container--content .charity-img {
+        margin-bottom: -10px; }
+      .full-page-modal--container--content .bigger {
+        padding: 0;
+        background-color: #FFFBF6;
+        border: 2px solid black;
+        border-radius: 15px;
+        width: 102%;
+        margin-left: -1%;
+        margin-bottom: -2px; }
       .full-page-modal--container--content.how-we-operate-modal-content {
-        padding-bottom: 0px; }
+        padding: 0; }
         .full-page-modal--container--content.how-we-operate-modal-content div {
           padding: 30px 60px; }
-        .full-page-modal--container--content.how-we-operate-modal-content div:last-child {
-          background-color: #FFFBF6;
-          border: 2px solid black;
-          border-radius: 10px;
-          width: 102%;
-          margin-left: -1%;
-          margin-bottom: -2px; }
+      .full-page-modal--container--content.sustainability-modal-content {
+        padding: 0; }
+        .full-page-modal--container--content.sustainability-modal-content div {
+          padding: 30px 60px; }
+          .full-page-modal--container--content.sustainability-modal-content div header {
+            margin: 40px 20px; }
+            .full-page-modal--container--content.sustainability-modal-content div header small {
+              display: block;
+              font-weight: 600;
+              letter-spacing: 1px; }
+          .full-page-modal--container--content.sustainability-modal-content div ul {
+            list-style-type: none; }
+            .full-page-modal--container--content.sustainability-modal-content div ul li {
+              display: grid;
+              grid-template-columns: 20px auto;
+              -webkit-column-gap: 10px;
+              -moz-column-gap: 10px;
+              column-gap: 10px;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
+              align-items: center;
+              -webkit-box-pack: start;
+              -ms-flex-pack: start;
+              justify-content: flex-start;
+              opacity: .6; }
+        .full-page-modal--container--content.sustainability-modal-content .bigger {
+          padding: 0; }
+          .full-page-modal--container--content.sustainability-modal-content .bigger div {
+            padding: 0 60px;
+            padding-bottom: 30px; }
+      .full-page-modal--container--content.the-truth-modal-content {
+        padding: 0; }
+        .full-page-modal--container--content.the-truth-modal-content div {
+          padding: 30px 60px; }
+          .full-page-modal--container--content.the-truth-modal-content div:not(.bigger) h2 {
+            width: 215px;
+            margin: 0 auto;
+            margin-top: 40px;
+            margin-bottom: 20px; }
+        .full-page-modal--container--content.the-truth-modal-content .bigger p:last-child {
+          font-size: 14px; }
+      .full-page-modal--container--content.flexible-cost-modal-content {
+        padding: 0; }
+        .full-page-modal--container--content.flexible-cost-modal-content div {
+          padding: 30px 60px; }
+        .full-page-modal--container--content.flexible-cost-modal-content .bottom-bar {
+          background: #FFFBF6;
+          border-top: 2px solid black;
+          padding: 15px;
+          border-bottom-left-radius: 8px;
+          border-bottom-right-radius: 8px; }
+          .full-page-modal--container--content.flexible-cost-modal-content .bottom-bar p {
+            opacity: .6; }
+      .full-page-modal--container--content.wholesale-modal-content > div {
+        border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
+        padding: 20px 0;
+        margin: 20px 0 40px 0; }
+      .full-page-modal--container--content.wholesale-modal-content p span {
+        font-weight: 400;
+        font-style: italic; }
+      .full-page-modal--container--content.wholesale-modal-content .small {
+        font-size: 12px;
+        color: gray; }
+      .full-page-modal--container--content.impact-modal-content {
+        padding: 0; }
+        .full-page-modal--container--content.impact-modal-content div {
+          padding: 30px 60px; }
+        .full-page-modal--container--content.impact-modal-content .reech-impact {
+          margin-bottom: 10px; }
+        .full-page-modal--container--content.impact-modal-content small {
+          opacity: .8; }
     .full-page-modal--container button {
       margin: 0 auto;
       margin-top: 40px;

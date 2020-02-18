@@ -1,0 +1,19 @@
+<div class="full-page-modal impact-modal">
+    <div class="full-page-modal--container">
+        <div class='full-page-modal--container--content impact-modal-content'>
+            {% include 'close-modal-btn' %}
+            <div>
+                {{ 'reech-impact.png' | asset_url | img_tag: 'reech impact', 'reech-impact' }}
+                {{ 'mat-colors.png' | asset_url | img_tag }}
+                <p>Depending on the color mat you purchase — 20% of our profit is donated to our charity partners facing our planet's biggest ecological and human crises.<br/><br/> High quality made affordable, with a sprinkle of impact on top — now that's something we can all stand behind.</p>
+                <small>For the people. For your practice. For the planet.</small>
+            </div>
+            {{ 'ocean-cleanup.png' | asset_url | img_tag: 'charity img', 'charity-img' }}
+            {{ 'charity-water.png' | asset_url | img_tag: 'charity img', 'charity-img' }}
+            {{ 'amazon-conservation.png' | asset_url | img_tag: 'charity img', 'charity-img' }}
+            {{ 'eden-project.png' | asset_url | img_tag: 'charity img', 'charity-img' }}
+
+        </div>
+        <button class='bttn close-modal-btn'>Close</button>
+    </div>
+</div>

@@ -543,39 +543,163 @@
 
         &--content {
             border: 2px solid black;
-            border-radius: 10px;
+            border-radius: 15px;
             text-align: center;
             padding-bottom: 50px;
             background: white;
             width: 500px;
+            padding: 30px 60px;
 
-            &.free-trial-modal-content {
-                padding: 30px 60px;
-            }
+            &.dark { background: #262626; color: white;}
 
             h2 {
                 font-size: 28px;
+                color: inherit;
             }
 
             p {
                 font-size: 16px;
                 font-weight: 500;
             }
+            
+            .charity-img { margin-bottom: -10px; }
+            .bigger {
+                padding: 0;
+                background-color: #FFFBF6;
+                border: 2px solid black;
+                border-radius: 15px;
+                width: 102%;
+                margin-left: -1%;
+                margin-bottom: -2px;
+            }
 
             &.how-we-operate-modal-content {
-                padding-bottom: 0px;
+                padding: 0;
 
                 div {
                     padding: 30px 60px;
                 }
+            }
+
+            &.sustainability-modal-content {
+                padding: 0;
+
+                div {
+                    padding: 30px 60px;
+
+                    header {
+                        margin: 40px 20px;
+    
+                        small {
+                            display: block;
+                            font-weight: 600;
+                            letter-spacing: 1px;
+                        }
+                    }
+
+                    ul {
+                        list-style-type: none;
+
+                        li {
+                            display: grid;
+                            grid-template-columns: 20px auto;
+                            column-gap: 10px;
+                            align-items: center;
+                            justify-content: flex-start;
+                            opacity: .6;
+                        }
+                    }
+                }
+
+                .bigger {
+                    padding: 0;
+                    
+                    div {
+                        padding: 0 60px;
+                        padding-bottom: 30px;
+                    }
+                }
+            }
+
+            &.the-truth-modal-content {
+                padding: 0;
+
+                div {
+                    padding: 30px 60px;
+
+                    &:not(.bigger) {
+
+                        h2 {
+                            width: 215px;
+                            margin: 0 auto;
+                            margin-top: 40px;
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+
+                .bigger {
+
+                    p:last-child {
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            &.flexible-cost-modal-content {
+                padding: 0;
                 
-                div:last-child {
-                    background-color: #FFFBF6;
-                    border: 2px solid black;
-                    border-radius: 10px;
-                    width: 102%;
-                    margin-left: -1%;
-                    margin-bottom: -2px;
+                div {
+                    padding: 30px 60px;
+                }
+
+                .bottom-bar {
+                    background: #FFFBF6;
+                    border-top: 2px solid black;
+                    padding: 15px;
+                    border-bottom-left-radius: 8px;
+                    border-bottom-right-radius: 8px;
+
+                    p {
+                        opacity: .6;
+                    }
+                }
+
+            }
+
+            &.wholesale-modal-content {
+
+                > div {
+                    border-top: 1px solid gray;
+                    border-bottom: 1px solid gray;
+                    padding: 20px 0;
+                    margin: 20px 0 40px 0;
+                }
+
+                p span {
+                    font-weight: 400;
+                    font-style: italic;
+                }
+
+                .small {
+                    font-size: 12px;
+                    color: gray;
+                }
+            }
+
+            &.impact-modal-content {
+                padding: 0;
+
+                div {
+                    padding: 30px 60px;
+                }
+
+                .reech-impact {
+                    margin-bottom: 10px;
+                }
+
+                small {
+                    opacity: .8;
                 }
             }
         }

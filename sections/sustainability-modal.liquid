@@ -2,9 +2,28 @@
     <div class="full-page-modal--container">
         <div class='full-page-modal--container--content sustainability-modal-content'>
             {% include 'close-modal-btn' %}
-            {{ 'logo.png' | file_url | img_tag }}
-            <p>sustainability</p>
-            <p>We use USPS for a majority of US orders. This helps reduce our carbon footprint by using the preexisting shipping routes your postman has, instead of taking a private drive</p>
+            <div>
+                <header>
+                    {{ 'logo.png' | file_url | img_tag }}
+                    <small>sustainability</small>
+                </header>
+                <p>We use USPS for a majority of US orders. This helps reduce our carbon footprint by using the preexisting shipping routes your postman has, instead of taking a private drive</p>
+                {{ 'shipping.png' | asset_url | img_tag }}
+                <p>As we grow as a brand — we'll continue to partner up with warehouses around the US to reduce the distance your REECH mat needs to travel to get to you. Eventually making it cheaper for you, and easier on the planet.</p>
+                <ul>
+                    <li>{{ 'check.png' | file_url | img_tag }} biodegradable packaging</li>
+                    <li>{{ 'check.png' | file_url | img_tag }} biodegradable product</li>
+                </ul>
+            </div>                
+            <div class='bigger'>
+                {{ 'forest.png' | asset_url | img_tag }}
+                <div>
+                    <h2>Planting Trees</h2>
+                    <p>We donate 20% of our profits to our charity partner Eden Reforestation Projects to plant trees. 15-30 trees are planted for every green mat purchased. <br/> We are working towards becoming a carbon neutral company, and are hoping to achieve this with the help of carbonfund.org by 2021.</p>
+                </div>
+                {{ 'eden-project.png' | asset_url | img_tag: 'charity img', 'charity-img' }}
+            </div>
+
         </div>
         <button class='bttn close-modal-btn'>Close</button>
     </div>
