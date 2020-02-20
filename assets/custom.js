@@ -54,6 +54,12 @@ $(document).ready(function(){
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  const hamburgerMenu = document.querySelector('.hamburger-menu')
+  const hamburgerMenuContents = document.querySelector('.hamburger-menu-contents')
+  const closeHamburgerMenuBtn = document.querySelector('.close-hamburger-menu-btn')
+  closeHamburgerMenuBtn.onclick = () => hamburgerMenuContents.classList.remove('active')
+  hamburgerMenu.onclick = () => hamburgerMenuContents.classList.add('active')
+
   const trialModal = document.querySelector('.free-trial-modal')
   const howWeOperateModal = document.querySelector('.how-we-operate-modal')
   const sustainabilityModal = document.querySelector('.sustainability-modal')

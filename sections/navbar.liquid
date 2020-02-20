@@ -13,8 +13,26 @@
             <a href="#">{{ 'user.png' | file_url | img_tag }}</a>
             <div>
                 <a href="#">{{ 'bag.png' | file_url | img_tag }}</a>
-                <p>0</p>
+                <p>{{ cart.item_count }}</p>
             </div>
         </div>
     </div>
+</div>
+
+<div class="mobile-navbar">
+    <div class="mobile-navbar--content">
+        {{ 'hamburger.png' | asset_url | img_tag: 'hamburger menu', 'hamburger-menu' }}
+        {{ 'logo.png' | file_url | img_tag }}
+    </div>
+</div>
+
+<div class="hamburger-menu-contents">
+    {{ 'close.png' | file_url | img_tag: 'close-hamburger-menu', 'close-hamburger-menu-btn'  }}
+    <a href="/">{{ 'logo.png' | file_url | img_tag }}</a>
+    <a href="#">Shop</a>
+    <a href="/">Why REECH?</a>
+    <a href="#">Log in</a>
+    <a href="#">Cart</a>
+    <br/>
+    <a href="#">FAQ</a>
 </div>
