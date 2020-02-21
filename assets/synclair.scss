@@ -801,3 +801,111 @@
         }
     }
 }
+
+.product-section {
+    padding-top: 200px;
+    padding-bottom: 120px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &--images {
+        position: sticky;
+        top: 0;
+        align-self: center;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    &--right {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        text-align: center;
+
+        &--header {
+            margin-bottom: 10px;
+
+            img {
+                height: 40px;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 14px;
+                letter-spacing: 4px;
+                font-weight: 800;
+            }
+        }
+
+        &--stars {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+
+            img {
+                height: 45px;
+            }
+
+            p {
+                font-size: 18px;
+                font-weight: 800;
+                letter-spacing: 1px;
+            }
+        }
+
+        &--price {
+            p {
+                font-size: 40px;
+                font-weight: 800;
+            }
+        }
+
+        &--afterpay {
+            
+            p {
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                font-size: 16px;
+
+                img {
+                    height: 28px;
+                }
+            }
+        }
+
+        &--color {
+
+            p {
+                font-size: 15px;
+                color: #5a5a5a;
+                font-weight: 700;
+                letter-spacing: 1px;
+            }
+
+            &--choices {
+                display: flex;
+                flex-flow: row nowrap;
+
+                .color {
+                    margin: 0 8px;
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+    
+                    &.Black { background-color: black; }
+                    &.Blue { background-color: #5FA2FF; }
+                    &.Green { background-color: #32CE74; }
+                    &.Purple { background-color: #642C66; }
+
+                    &.selected {
+                        border: 1px solid red;
+                    }
+                }
+            }
+        }
+    }
+
+}

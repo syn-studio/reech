@@ -1,0 +1,43 @@
+{%- assign on_sale = false -%}
+{% if product.price < product.price_max %}
+  {%- assign on_sale = true -%}
+{% endif %}
+
+
+<div class="product-section content-container">
+
+  <div class="product-section--images">
+    {% comment %} <img src="{{ product.featured_image | product_img_url: 'medium' }}" alt=""> {% endcomment %}
+    {{ product.featured_image | img_url: '675x' | img_tag }}
+  </div>
+  
+  <div class='product-section--right'>
+    <div class='product-section--right--header'>
+      {{ 'logo-big.png' | asset_url | img_tag }}
+      <p>HIGH QUALITY MADE AFFORDABLE</p>
+    </div>
+    <div class='product-section--right--stars'>
+      {{ 'stars.png' | file_url | img_tag }}
+      <p>73 REVIEWS</p>
+    </div>
+    <div class="product-section--right--price">
+      {% if on_sale %}
+        <p class='product-section--price__old-price'>{{ product.price_max }}</p>
+      {% endif %}
+      <p>{{ product.price | money_without_trailing_zeros }}</p>
+    </div>
+    <div class="product-section--right--afterpay">
+      <p>Or 4 interest free installments of $22 by {{ 'afterpay.png' | asset_url | img_tag }}</p>
+    </div>
+    <div class="product-section--right--color">
+      <p>COLOR: BLACK</p>
+
+      <div class="product-section--right--color--choices">
+        {% for variant in product.variants %}
+          <div class='color {{ variant.title }} {% if variant.selected %} selected {% endif %} '></div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</div>
